@@ -14,6 +14,9 @@ class Program
         string[] strArray = CreateArray<string>(size);
         double[] doubleArray = CreateArray<double>(size);
 
+
+
+
         // Check if the data types match
         if (AreDataTypesSame(intArray, strArray, doubleArray))
         {
