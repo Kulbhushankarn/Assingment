@@ -1,63 +1,47 @@
 ﻿using System;
+using System.Text;
 
-class Program
+namespace practice
 {
-    static void Main(string[] args)
+    internal class Intern
     {
-        Console.WriteLine("Enter the size of the array:");
-
-        // Get the size of the array from the user
-        int size = int.Parse(Console.ReadLine());
-
-        // Create arrays of integer, string, and double based on user input
-        int[] intArray = CreateArray<int>(size);
-        string[] strArray = CreateArray<string>(size);
-        double[] doubleArray = CreateArray<double>(size);
-
-
-
-
-        // Check if the data types match
-        if (AreDataTypesSame(intArray, strArray, doubleArray))
+        public static void Main()
         {
-            Console.WriteLine("All data types are the same. Printing the values:");
-            PrintValues(intArray);
+            string s1 = "one";
+            string s2 = new StringBuilder().Append("on").Append("e").ToString();
+            string s3 = String.Intern(s2);
+            Console.WriteLine($"s1 == {s1}");
+            Console.WriteLine($"s2 == {s2}");
+            Console.WriteLine($"s3 == {s3}");
+            Console.WriteLine($"Is s2 the same reference as s1?: {(Object)s2 == (Object)s1}");
+            Console.WriteLine($"Is s3 the same reference as s1?: {(Object)s3 == (Object)s1}");
+
+            string s4 = "two";
+            string s5 = new StringBuilder().Append("two").ToString();
+            string s6 = String.Intern(s5);
+            Console.WriteLine($"s4 == {s4}");
+            Console.WriteLine($"s5 == {s5}");
+            Console.WriteLine($"s6 == {s6}");
+            Console.WriteLine($"Is s5 the same reference as s4?: {(Object)s5 == (Object)s4}");
+            Console.WriteLine($"Is s6 the same reference as s4?: {(Object)s6 == (Object)s4}");
+
+            string s7 = "three";
+            string s8 = new StringBuilder().Append("three").ToString(); // Modified to match s7
+            string s9 = String.Intern(s8);
+            Console.WriteLine($"s7 == {s7}");
+            Console.WriteLine($"s8 == {s8}");
+            Console.WriteLine($"s9 == {s9}");
+            Console.WriteLine($"Is s8 the same reference as s7?: {(Object)s8 == (Object)s7}"); // Corrected comparison
+            Console.WriteLine($"Is s9 the same reference as s7?: {(Object)s9 == (Object)s7}");
+
+            string s10 = "four";
+            string s11 = new StringBuilder().Append("four").ToString();
+            string s12 = String.Intern(s11);
+            Console.WriteLine($"s10 == {s10}");
+            Console.WriteLine($"s11 == {s11}");
+            Console.WriteLine($"s12 == {s12}");
+            Console.WriteLine($"Is s11 the same reference as s10?: {(Object)s11 == (Object)s10}");
+            Console.WriteLine($"Is s12 the same reference as s10?: {(Object)s12 == (Object)s10}");
         }
-        else
-        {
-            Console.WriteLine("Data types are not the same. Values are not valid.");
-        }
-    }
-
-    // Generic method to create an array of a specified data type
-    static T[] CreateArray<T>(int size)
-    {
-        T[] array = new T[size];
-        Console.WriteLine($"Enter {typeof(T).Name} values:");
-
-        for (int i = 0; i < size; i++)
-        {
-            string input = Console.ReadLine();
-            T value = (T)Convert.ChangeType(input, typeof(T));
-            array[i] = value;
-        }
-
-        return array;
-    }
-
-    // Method to check if data types of three arrays are the same
-    static bool AreDataTypesSame<T1, T2, T3>(T1[] arr1, T2[] arr2, T3[] arr3)
-    {
-        return typeof(T1) == typeof(T2) && typeof(T2) == typeof(T3);
-    }
-
-    // Generic method to print the elements of an array
-    static void PrintValues<T>(T[] array)
-    {
-        foreach (var item in array)
-        {
-            Console.Write(item + " ");
-        }
-        Console.WriteLine();
     }
 }
